@@ -3,8 +3,8 @@ import re
 from bs4 import BeautifulSoup
 from datetime import datetime,timedelta
 import argparse
-parser = argparse.ArgumentParser(prog="GoS Clan Viewer",description="displays info about your GoS clan!")
-parser.add_argument("filename",help="the filepath to the HTML of the clan members")
+parser = argparse.ArgumentParser(prog="GoS Clan Viewer",description="displays info about your GoS clan!\n Go to Misc. Locations->Clan Kingdom->View Members right click somewhere on the page and hit \"save as\", make sure that your file type is .html, if not, try again in a different spot.")
+parser.add_argument("filename",help="the filepath to the HTML of the clan members. When you run the command supply the path to the file as a positional argument.")
 parser.add_argument("-a","--active",action="store_true",help="shows all active players (default days is 30)")
 parser.add_argument("-i","--inactive",action="store_true",help="shows all inactive players (default days is 30)")
 parser.add_argument("-al","--all",action="store_true",help="Shows all players")
@@ -45,17 +45,18 @@ if __name__ == "__main__":
             expired_characters.append(f"Rank: {chat_rank} Username: {username}, ID: {user_id} {date.strftime('%m/%d/%y')} {status}")
         else:
             active_characters.append(f"Rank: {chat_rank} Username: {username}, ID: {user_id} {date.strftime('%m/%d/%y')}  Activity: {player_activity} {status}")
-            
-    
     print(f"Clan Members Online: {online_player_count} \nActive in last {overdue_days.days} days: {len(active_characters)}\nNot logged in for {overdue_days.days} days: {len(expired_characters)}")
     if args.active:
+        print("Active Players:")
         for x in active_characters:
             print(x)
     if args.all:
+        print("All Players:")
         players = active_characters + expired_characters
         for x in players:
             print(x)
     if args.inactive:
+        print("Inactive Players:")
         for x in expired_characters:
             print(x)
                 
