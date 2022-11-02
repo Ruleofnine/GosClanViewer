@@ -1,9 +1,4 @@
-JSONS/HangManGameState.json
-JSONS/ScrambleGameState.json
-secrets.ini
 venv*
-Archivist.log
-Logs
 __pycache__
 .vscode
 *__pycache__*
